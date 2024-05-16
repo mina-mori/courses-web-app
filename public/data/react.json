@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "title": "Introduction to React",
+    "content": "<p>Learn about the basics of React and its key concepts.</p>"
+  },
+  {
+    "id": 2,
+    "title": "State and Props",
+    "content": "<p>Understand how to manage state and props in React components.</p>"
+  }
+]
