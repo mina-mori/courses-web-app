@@ -1,8 +1,8 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { CourseData } from '../../model/SharedModels';
-import './CourseDetails.scss';
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { CourseData } from "../../model/SharedModels";
+import "./CourseDetails.scss";
 
 const CourseDetails: React.FC = () => {
   const { id } = useParams();
@@ -16,7 +16,7 @@ const CourseDetails: React.FC = () => {
         setJsonData(response.data);
         setSelectedTopic(1);
       } catch (error) {
-        console.error('Error fetching JSON data:', error);
+        console.error("Error fetching JSON data:", error);
       }
     }
 
@@ -28,13 +28,13 @@ const CourseDetails: React.FC = () => {
   };
 
   return (
-    <div className='course-details-container'>
-      <div className='menu'>
-        <h2 className='menuTitle'>Course Content</h2>
-        <ul className='menuList'>
+    <div className="course-details-container">
+      <div className="menu">
+        <h2 className="menuTitle">Course Content</h2>
+        <ul className="menuList">
           {jsonData.map((topic, index) => (
             <li
-              className='menuItem'
+              className="menuItem"
               key={index}
               onClick={() => handleTopicClick(topic.id)}
             >
@@ -43,13 +43,18 @@ const CourseDetails: React.FC = () => {
           ))}
         </ul>
       </div>
-      <div className='content'>
+      <div className="content">
         {selectedTopic !== null ? (
           <div>
-            <h2 className='contentTitle'>
+            <h2 className="contentTitle">
               {jsonData[selectedTopic - 1].title}
             </h2>
-            <p className='contentText'>{jsonData[selectedTopic - 1].content}</p>
+            <div
+              className="contentText"
+              dangerouslySetInnerHTML={{
+                __html: jsonData[selectedTopic - 1].content as string,
+              }}
+            />
           </div>
         ) : (
           <p>Select a topic from the menu to view its content.</p>
