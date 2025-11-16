@@ -16,7 +16,7 @@ module.exports = {
   ],
   rules: {
     // Add custom rules if needed
-    'react/no-unescaped-entities': 'off', // Disable the rule entirely
+    'react/no-unescaped-entities': 'off',
   },
   settings: {
     react: {

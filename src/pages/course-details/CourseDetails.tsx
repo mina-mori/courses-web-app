@@ -132,7 +132,6 @@ const CourseDetails: React.FC = () => {
                   >
                     Mark as Complete
                   </button>
-                  <button className="share-topic">Share</button>
                 </div>
               </div>
               <div

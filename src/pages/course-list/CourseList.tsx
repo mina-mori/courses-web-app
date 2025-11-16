@@ -41,6 +41,32 @@ const courses = [
   },
 ];
 
+const filterOptions = [
+  { key: 'all', label: 'All Courses' },
+  { key: 'JavaScript', label: 'JavaScript' },
+  { key: 'TypeScript', label: 'TypeScript' },
+  { key: 'C#', label: 'C#' },
+];
+
+const infoItems = [
+  {
+    title: 'Expert-Led Content',
+    description: 'Learn from industry experts with real-world experience.',
+  },
+  {
+    title: 'Practical Projects',
+    description: 'Build portfolios with hands-on projects and assignments.',
+  },
+  {
+    title: 'Flexible Schedule',
+    description: 'Study at your own pace with lifetime access.',
+  },
+  {
+    title: 'Certification',
+    description: 'Earn certificates upon completion to showcase your skills.',
+  },
+];
+
 const CourseList: React.FC = () => {
   const navigate = useNavigate();
   const [filter, setFilter] = useState<string>('all');
@@ -49,6 +75,12 @@ const CourseList: React.FC = () => {
     filter === 'all'
       ? courses
       : courses.filter((course) => course.tags.includes(filter));
+
+  const renderStars = (rating: number) => {
+    const fullStars = Math.floor(rating);
+    const emptyStars = 5 - fullStars;
+    return '★'.repeat(fullStars) + '☆'.repeat(emptyStars);
+  };
 
   return (
     <div className="courses-list-container">
@@ -59,30 +91,15 @@ const CourseList: React.FC = () => {
           advance your career.
         </p>
         <div className="filter-buttons">
-          <button
-            className={filter === 'all' ? 'active' : ''}
-            onClick={() => setFilter('all')}
-          >
-            All Courses
-          </button>
-          <button
-            className={filter === 'JavaScript' ? 'active' : ''}
-            onClick={() => setFilter('JavaScript')}
-          >
-            JavaScript
-          </button>
-          <button
-            className={filter === 'TypeScript' ? 'active' : ''}
-            onClick={() => setFilter('TypeScript')}
-          >
-            TypeScript
-          </button>
-          <button
-            className={filter === 'C#' ? 'active' : ''}
-            onClick={() => setFilter('C#')}
-          >
-            C#
-          </button>
+          {filterOptions.map((option) => (
+            <button
+              key={option.key}
+              className={filter === option.key ? 'active' : ''}
+              onClick={() => setFilter(option.key)}
+            >
+              {option.label}
+            </button>
+          ))}
         </div>
       </header>
 
@@ -114,10 +131,7 @@ const CourseList: React.FC = () => {
               </div>
               <div className="course-stats">
                 <div className="rating">
-                  <span className="stars">
-                    {'★'.repeat(Math.floor(course.rating))}
-                    {'☆'.repeat(5 - Math.floor(course.rating))}
-                  </span>
+                  <span className="stars">{renderStars(course.rating)}</span>
                   <span className="rating-value">{course.rating}</span>
                 </div>
                 <span className="students">{course.students} students</span>
@@ -136,22 +150,12 @@ const CourseList: React.FC = () => {
       <section className="courses-info">
         <h2>Why Enroll in Our Courses?</h2>
         <div className="info-grid">
-          <div className="info-item">
-            <h3>Expert-Led Content</h3>
-            <p>Learn from industry experts with real-world experience.</p>
-          </div>
-          <div className="info-item">
-            <h3>Practical Projects</h3>
-            <p>Build portfolios with hands-on projects and assignments.</p>
-          </div>
-          <div className="info-item">
-            <h3>Flexible Schedule</h3>
-            <p>Study at your own pace with lifetime access.</p>
-          </div>
-          <div className="info-item">
-            <h3>Certification</h3>
-            <p>Earn certificates upon completion to showcase your skills.</p>
-          </div>
+          {infoItems.map((item, index) => (
+            <div className="info-item" key={index}>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </div>
+          ))}
         </div>
       </section>
     </div>

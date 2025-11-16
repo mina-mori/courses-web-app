@@ -25,15 +25,69 @@ const ContactUs: React.FC = () => {
     setFormData({ name: '', email: '', subject: '', message: '' });
   };
 
+  // Extracted data logic outside JSX
+  const heroData = {
+    title: 'Contact Us',
+    description:
+      "Have questions about our courses? Need support? We're here to help. Reach out to us and we'll respond as soon as possible.",
+  };
+
+  const contactInfo = [
+    {
+      title: 'Address',
+      content: '123 Tech Street\nInnovation City, IC 12345\nUnited States',
+    },
+    {
+      title: 'Phone',
+      content: '+1 (555) 123-4567',
+    },
+    {
+      title: 'Email',
+      content: 'info@programmingcourses.com',
+    },
+    {
+      title: 'Business Hours',
+      content:
+        'Monday - Friday: 9:00 AM - 6:00 PM\nSaturday: 10:00 AM - 4:00 PM\nSunday: Closed',
+    },
+  ];
+
+  const socialLinks = [
+    { name: 'Facebook', url: '#' },
+    { name: 'Twitter', url: '#' },
+    { name: 'LinkedIn', url: '#' },
+    { name: 'YouTube', url: '#' },
+  ];
+
+  const faqItems = [
+    {
+      question: 'How do I enroll in a course?',
+      answer:
+        'You can enroll by visiting our Course List page and clicking "View Course" on your chosen course.',
+    },
+    {
+      question: 'Are the courses self-paced?',
+      answer:
+        'Yes, all our courses are self-paced, allowing you to learn at your own speed with lifetime access.',
+    },
+    {
+      question: 'Do you offer certificates?',
+      answer:
+        "Yes, upon completion of each course, you'll receive a certificate to showcase your achievement.",
+    },
+    {
+      question: 'What if I need help with a course?',
+      answer:
+        'Our community forum and instructor support are available to help you throughout your learning journey.',
+    },
+  ];
+
   return (
     <div className="contact-us-container">
       {/* Hero Section */}
       <section className="contact-hero">
-        <h1 className="hero-title">Contact Us</h1>
-        <p className="hero-description">
-          Have questions about our courses? Need support? We're here to help.
-          Reach out to us and we'll respond as soon as possible.
-        </p>
+        <h1 className="hero-title">{heroData.title}</h1>
+        <p className="hero-description">{heroData.description}</p>
       </section>
 
       {/* Contact Form and Info Section */}
@@ -94,64 +148,23 @@ const ContactUs: React.FC = () => {
         <div className="contact-info-section">
           <h2>Get in Touch</h2>
           <div className="contact-info">
-            <div className="info-item">
-              <h3>Address</h3>
-              <p>
-                123 Tech Street
-                <br />
-                Innovation City, IC 12345
-                <br />
-                United States
-              </p>
-            </div>
-            <div className="info-item">
-              <h3>Phone</h3>
-              <p>+1 (555) 123-4567</p>
-            </div>
-            <div className="info-item">
-              <h3>Email</h3>
-              <p>info@programmingcourses.com</p>
-            </div>
-            <div className="info-item">
-              <h3>Business Hours</h3>
-              <p>
-                Monday - Friday: 9:00 AM - 6:00 PM
-                <br />
-                Saturday: 10:00 AM - 4:00 PM
-                <br />
-                Sunday: Closed
-              </p>
-            </div>
+            {contactInfo.map((info, index) => (
+              <div key={index} className="info-item">
+                <h3>{info.title}</h3>
+                <p style={{ whiteSpace: 'pre-line' }}>{info.content}</p>
+              </div>
+            ))}
           </div>
           <div className="social-media">
             <h3>Follow Us</h3>
             <div className="social-links">
-              <a href="#" className="social-link">
-                Facebook
-              </a>
-              <a href="#" className="social-link">
-                Twitter
-              </a>
-              <a href="#" className="social-link">
-                LinkedIn
-              </a>
-              <a href="#" className="social-link">
-                YouTube
-              </a>
+              {socialLinks.map((link, index) => (
+                <a key={index} href={link.url} className="social-link">
+                  {link.name}
+                </a>
+              ))}
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Map Section */}
-      <section className="map-section">
-        <h2>Find Us</h2>
-        <div className="map-placeholder">
-          <img
-            src="https://via.placeholder.com/800x400?text=Map+Location"
-            alt="Map"
-          />
-          <p>Interactive map would be embedded here.</p>
         </div>
       </section>
 
@@ -159,34 +172,12 @@ const ContactUs: React.FC = () => {
       <section className="faq-section">
         <h2>Frequently Asked Questions</h2>
         <div className="faq-grid">
-          <div className="faq-item">
-            <h3>How do I enroll in a course?</h3>
-            <p>
-              You can enroll by visiting our Course List page and clicking "View
-              Course" on your chosen course.
-            </p>
-          </div>
-          <div className="faq-item">
-            <h3>Are the courses self-paced?</h3>
-            <p>
-              Yes, all our courses are self-paced, allowing you to learn at your
-              own speed with lifetime access.
-            </p>
-          </div>
-          <div className="faq-item">
-            <h3>Do you offer certificates?</h3>
-            <p>
-              Yes, upon completion of each course, you'll receive a certificate
-              to showcase your achievement.
-            </p>
-          </div>
-          <div className="faq-item">
-            <h3>What if I need help with a course?</h3>
-            <p>
-              Our community forum and instructor support are available to help
-              you throughout your learning journey.
-            </p>
-          </div>
+          {faqItems.map((faq, index) => (
+            <div key={index} className="faq-item">
+              <h3>{faq.question}</h3>
+              <p>{faq.answer}</p>
+            </div>
+          ))}
         </div>
       </section>
     </div>
