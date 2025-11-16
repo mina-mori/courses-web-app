@@ -1,3 +1,4 @@
+// eslint-disable no-undef
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
@@ -7,7 +8,6 @@ import App from './App';
 jest.mock('axios', () => ({
   get: jest.fn(() => Promise.resolve({ data: [] })),
 }));
-
 test('renders navbar with correct links', () => {
   render(
     <MemoryRouter>
@@ -16,7 +16,7 @@ test('renders navbar with correct links', () => {
   );
 
   // Check if navbar links are present
-  expect(screen.getByText('Homee')).toBeInTheDocument();
+  expect(screen.getByText('Home')).toBeInTheDocument();
   expect(screen.getByText('Courses')).toBeInTheDocument();
   expect(screen.getByText('Contact')).toBeInTheDocument();
   expect(screen.getByText('About Us')).toBeInTheDocument();
