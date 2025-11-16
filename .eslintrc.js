@@ -1,14 +1,31 @@
 module.exports = {
-  env: { browser: true, es2020: true, node: true },
-  extends: ['eslint:recommended', 'plugin:react/recommended'],
-  parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
-  plugins: ['react'],
-  settings: {
-    react: {
-      version: 'detect', // Or specify e.g., '18.0' if known
+  root: true,
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 2020,
+    sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true,
     },
   },
+  plugins: ['@typescript-eslint'],
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
+  ],
   rules: {
-    // Add any custom rules
+    // Add custom rules if needed
+    'react/no-unescaped-entities': 'off', // Disable the rule entirely
+  },
+  settings: {
+    react: {
+      version: 'detect',
+    },
+  },
+  env: {
+    browser: true,
+    es6: true,
+    node: true,
   },
 };

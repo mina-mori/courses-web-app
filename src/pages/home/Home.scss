@@ -1,19 +1,243 @@
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background-color: #f4f4f4;
+.home-container {
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  line-height: 1.6;
 
-  .title {
-    font-size: 36px;
-    margin-bottom: 10px;
-    color: #333;
+  /* Hero Section */
+  .hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    min-height: 60vh;
+
+    .hero-content {
+      flex: 1;
+
+      .hero-title {
+        font-size: 48px;
+        margin-bottom: 20px;
+        font-weight: bold;
+      }
+
+      .hero-description {
+        font-size: 20px;
+        margin-bottom: 30px;
+      }
+
+      .cta-button {
+        background-color: #ff6b6b;
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        font-size: 18px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+        &:hover {
+          background-color: #ff5252;
+        }
+      }
+    }
   }
 
-  .description {
-    font-size: 18px;
-    color: #666;
+  /* Featured Courses Section */
+  .featured-courses {
+    padding: 60px 20px;
+    background-color: #f9f9f9;
+
+    h2 {
+      text-align: center;
+      font-size: 36px;
+      margin-bottom: 40px;
+      color: #333;
+    }
+
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+
+      .course-card {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: transform 0.3s;
+
+        &:hover {
+          transform: translateY(-5px);
+        }
+
+        img {
+          width: 100%;
+          height: 200px;
+          object-fit: cover;
+        }
+
+        h3 {
+          padding: 20px;
+          font-size: 24px;
+          margin: 0;
+        }
+
+        p {
+          padding: 0 20px;
+          color: #666;
+        }
+
+        .enroll-button {
+          display: block;
+          width: calc(100% - 40px);
+          margin: 20px;
+          background-color: #4caf50;
+          color: white;
+          border: none;
+          padding: 10px;
+          font-size: 16px;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: background-color 0.3s;
+
+          &:hover {
+            background-color: #45a049;
+          }
+        }
+      }
+    }
+  }
+
+  /* Why Choose Us Section */
+  .why-choose-us {
+    padding: 60px 20px;
+    background-color: white;
+
+    h2 {
+      text-align: center;
+      font-size: 36px;
+      margin-bottom: 40px;
+      color: #333;
+    }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+
+      .benefit {
+        text-align: center;
+
+        h3 {
+          font-size: 24px;
+          margin-bottom: 15px;
+          color: #333;
+        }
+
+        p {
+          color: #666;
+        }
+      }
+    }
+  }
+
+  /* Testimonials Section */
+  .testimonials {
+    padding: 60px 20px;
+    background-color: #f9f9f9;
+
+    h2 {
+      text-align: center;
+      font-size: 36px;
+      margin-bottom: 40px;
+      color: #333;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+
+      .testimonial {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+        p {
+          font-style: italic;
+          margin-bottom: 15px;
+          color: #555;
+        }
+
+        cite {
+          font-weight: bold;
+          color: #333;
+        }
+      }
+    }
+  }
+
+  /* Call to Action Section */
+  .cta-section {
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-align: center;
+
+    h2 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+
+    .cta-button {
+      background-color: #ff6b6b;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 18px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: #ff5252;
+      }
+    }
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .hero {
+      flex-direction: column;
+      text-align: center;
+
+      .hero-content {
+        max-width: 100%;
+      }
+
+      .hero-image {
+        margin-top: 30px;
+      }
+    }
+
+    .courses-grid,
+    .benefits-grid,
+    .testimonials-grid {
+      grid-template-columns: 1fr;
+    }
   }
 }

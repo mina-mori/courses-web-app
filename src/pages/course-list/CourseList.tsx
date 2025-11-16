@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './CourseList.scss';
 
@@ -6,39 +6,154 @@ const courses = [
   {
     id: 'react',
     title: 'React JS Course',
-    description: 'Learn to build dynamic user interfaces with React.',
+    description:
+      'Learn to build dynamic user interfaces with React. Covers components, hooks, state management, and more.',
+    duration: '8 weeks',
+    level: 'Beginner to Intermediate',
+    instructor: 'Jane Doe',
+    rating: 4.8,
+    students: 1250,
+    tags: ['JavaScript', 'Frontend', 'UI/UX'],
   },
   {
     id: 'angular',
     title: 'Angular Course',
-    description: 'Master the TypeScript-based web application framework.',
+    description:
+      'Master the TypeScript-based web application framework. Explore components, services, routing, and advanced features.',
+    duration: '10 weeks',
+    level: 'Intermediate',
+    instructor: 'John Smith',
+    rating: 4.7,
+    students: 980,
+    tags: ['TypeScript', 'Frontend', 'Framework'],
   },
   {
     id: 'dotnet',
     title: '.Net Core Course',
     description:
-      'Learn the basics of .NET Core (.NET 6) and then build a simple CRUD application with MVC in this tutorial.',
+      'Learn the basics of .NET Core (.NET 6) and build a simple CRUD application with MVC. Includes Entity Framework and APIs.',
+    duration: '12 weeks',
+    level: 'Beginner to Advanced',
+    instructor: 'Emily Johnson',
+    rating: 4.9,
+    students: 750,
+    tags: ['C#', 'Backend', 'MVC'],
   },
 ];
 
 const CourseList: React.FC = () => {
   const navigate = useNavigate();
+  const [filter, setFilter] = useState<string>('all');
+
+  const filteredCourses =
+    filter === 'all'
+      ? courses
+      : courses.filter((course) => course.tags.includes(filter));
+
   return (
-    <div className='courses-list-container'>
-      {courses.map((course, index) => (
-        <div className='courseCard' key={index}>
-          <h2 className='courseTitle'>{course.title}</h2>
-          <p className='courseDescription' title={course.description}>
-            {course.description}
-          </p>
+    <div className="courses-list-container">
+      <header className="courses-header">
+        <h1>Explore Our Programming Courses</h1>
+        <p>
+          Choose from a variety of courses designed to boost your skills and
+          advance your career.
+        </p>
+        <div className="filter-buttons">
           <button
-            className='courseButton'
-            onClick={() => navigate(`${course.id}`)}
+            className={filter === 'all' ? 'active' : ''}
+            onClick={() => setFilter('all')}
           >
-            View Course
+            All Courses
+          </button>
+          <button
+            className={filter === 'JavaScript' ? 'active' : ''}
+            onClick={() => setFilter('JavaScript')}
+          >
+            JavaScript
+          </button>
+          <button
+            className={filter === 'TypeScript' ? 'active' : ''}
+            onClick={() => setFilter('TypeScript')}
+          >
+            TypeScript
+          </button>
+          <button
+            className={filter === 'C#' ? 'active' : ''}
+            onClick={() => setFilter('C#')}
+          >
+            C#
           </button>
         </div>
-      ))}
+      </header>
+
+      <div className="courses-grid">
+        {filteredCourses.map((course, index) => (
+          <div className="course-card" key={index}>
+            <div className="course-image">
+              <div className="course-tags">
+                {course.tags.map((tag) => (
+                  <span key={tag} className="tag">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div className="course-content">
+              <h2 className="course-title">{course.title}</h2>
+              <p className="course-description">{course.description}</p>
+              <div className="course-meta">
+                <span className="meta-item">
+                  <strong>Duration:</strong> {course.duration}
+                </span>
+                <span className="meta-item">
+                  <strong>Level:</strong> {course.level}
+                </span>
+                <span className="meta-item">
+                  <strong>Instructor:</strong> {course.instructor}
+                </span>
+              </div>
+              <div className="course-stats">
+                <div className="rating">
+                  <span className="stars">
+                    {'★'.repeat(Math.floor(course.rating))}
+                    {'☆'.repeat(5 - Math.floor(course.rating))}
+                  </span>
+                  <span className="rating-value">{course.rating}</span>
+                </div>
+                <span className="students">{course.students} students</span>
+              </div>
+              <button
+                className="course-button"
+                onClick={() => navigate(`${course.id}`)}
+              >
+                View Course Details
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <section className="courses-info">
+        <h2>Why Enroll in Our Courses?</h2>
+        <div className="info-grid">
+          <div className="info-item">
+            <h3>Expert-Led Content</h3>
+            <p>Learn from industry experts with real-world experience.</p>
+          </div>
+          <div className="info-item">
+            <h3>Practical Projects</h3>
+            <p>Build portfolios with hands-on projects and assignments.</p>
+          </div>
+          <div className="info-item">
+            <h3>Flexible Schedule</h3>
+            <p>Study at your own pace with lifetime access.</p>
+          </div>
+          <div className="info-item">
+            <h3>Certification</h3>
+            <p>Earn certificates upon completion to showcase your skills.</p>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
