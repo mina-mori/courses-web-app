@@ -1,9 +1,23 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import App from './App';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+// Mock axios to prevent ES module issues
+jest.mock('axios', () => ({
+  get: jest.fn(() => Promise.resolve({ data: [] })),
+}));
+
+test('renders navbar with correct links', () => {
+  render(
+    <MemoryRouter>
+      <App />
+    </MemoryRouter>
+  );
+
+  // Check if navbar links are present
+  expect(screen.getByText('Homee')).toBeInTheDocument();
+  expect(screen.getByText('Courses')).toBeInTheDocument();
+  expect(screen.getByText('Contact')).toBeInTheDocument();
+  expect(screen.getByText('About Us')).toBeInTheDocument();
 });

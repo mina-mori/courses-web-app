@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { CourseData } from '../../model/SharedModels';
+import { CourseData } from '../../model/courses';
 import './CourseDetails.scss';
 
 const CourseDetails: React.FC = () => {
